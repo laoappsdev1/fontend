@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocaldataService } from 'src/service/localdata.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor() { }
+  public Username:string;
+  constructor( public local:LocaldataService) {
+    this.Username=local.get_user();
+  }
 
   ngOnInit() {
   }

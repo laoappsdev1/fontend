@@ -15,7 +15,15 @@
         <img src="./assets/admin-lte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image" />
       </div>
       <div class="info">
-        <a href="#" class="d-block">Super Admin</a>
+        <a href="#" class="d-block">
+          <div *ngIf="Username==''; else UserLogin">
+            Super Admin
+          </div>
+          <ng-template #UserLogin>
+            {{Username}}
+          </ng-template>
+          
+        </a>
       </div>
     </div>
 
@@ -56,8 +64,9 @@
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
-            <p>
-              Super Admin
+            <p> 
+                Super Admin 
+             
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>

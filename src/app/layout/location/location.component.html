@@ -1,7 +1,19 @@
 <h2>Manage Location</h2>
+<ng-template #customLoadingTemplate>
+  <div class="custom-class">
+      <h3>
+          Loading...
+      </h3>
+      <button (click)="showAlert()">
+          Click me!
+      </button>
+  </div>
+</ng-template>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
 <div class="row">
   <div class="col-md-12">
-    <button class="btn btn-success mb-2">Add Province</button>
+    <!-- <button class="btn btn-success mb-2">Add Province</button> -->
   </div>
   <div class="col-md-4">
     <div class="card card-primary card-outline">
@@ -11,19 +23,20 @@
           <table class="ml-3">
             <tr>
               <td><input type="search" name="search" placeholder="Search Province" class="form-control form-control-sm"></td>
-              <td><button class="btn btn-primary btn-sm"><li class="fas fa-search"></li></button></td>
-            </tr>
-            <tr>
-              <td>Vintiane Province</td>
-              <td><button class="btn btn-primary btn-sm"><li class="fas fa-plus"></li></button>
-                <button class="btn btn-warning btn-sm"><li class="fas fa-eye"></li></button>
+              <td>
+                <button class="btn btn-primary btn-sm"><li class="fas fa-search"></li></button>
+                <button class="btn btn-success btn-sm" (click)="createProvince()"><li class="fas fa-plus"></li></button>
               </td>
             </tr>
-            <tr>
-              <td>Huaphan Province</td>
-              <td><button class="btn btn-primary btn-sm"><li class="fas fa-plus"></li></button>
-                <button class="btn btn-warning btn-sm"><li class="fas fa-eye"></li></button></td>
-            </tr>
+            <tr *ngFor="let p of location.provinceviewalls; index as i">
+              <td>{{p.name}}</td>
+              <td> 
+                <button class="btn btn-warning btn-sm" (click)="viewDistrict(p.id)"><li class="fas fa-eye"></li></button>
+                <button class="btn btn-success btn-sm" (click)="createDistrict(p.id)"><li class="fas fa-plus"></li></button>
+                <button class="btn btn-primary btn-sm" (click)="updateProvince(p.id)"><li class="fas fa-edit"></li></button>
+                <button class="btn btn-danger btn-sm" (click)="deleteProvince(p.id)"><li class="fas fa-trash"></li></button>
+              </td>
+            </tr> 
           </table>
         </div>
       </div>
@@ -34,23 +47,22 @@
       <div class="card-body">
         <h2 class="card-title">District</h2>
         <div class="card-text">
-          <table  class="ml-3">
+          <table class="ml-3">
             <tr>
-            <td><input type="search" name="search" placeholder="Search District" class="form-control form-control-sm"></td>
-            <td><button class="btn btn-primary btn-sm"><li class="fas fa-search"></li></button></td>
-          </tr>
-            <tr>
-              <td>xaithany District</td>
-              <td><button class="btn btn-primary btn-sm"><li class="fas fa-plus"></li></button>
-                <button class="btn btn-warning btn-sm"><li class="fas fa-eye"></li></button>
+              <td><input type="search" name="search" placeholder="Search Province" class="form-control form-control-sm"></td>
+              <td>
+                <button class="btn btn-primary btn-sm"><li class="fas fa-search"></li></button>
               </td>
             </tr>
-            <tr>
-              <td>Chanthaboly District</td>
-              <td><button class="btn btn-primary btn-sm"><li class="fas fa-plus"></li></button>
-                <button class="btn btn-warning btn-sm"><li class="fas fa-eye"></li></button>
+            <tr *ngFor="let d of location.districtviewalls; index as i">
+              <td>{{d.name}}</td>
+              <td> 
+                <button class="btn btn-warning btn-sm" (click)="viewVillage(d.id)"><li class="fas fa-eye"></li></button>
+                <button class="btn btn-success btn-sm" (click)="createVillage(d.province_id,d.id)"><li class="fas fa-plus"></li></button>
+                <button class="btn btn-primary btn-sm" (click)="updateDistrict(d.id,d.province_id)"><li class="fas fa-edit"></li></button>
+                <button class="btn btn-danger btn-sm" (click)="deleteDistrict(d.id)"><li class="fas fa-trash"></li></button>
               </td>
-            </tr>
+            </tr> 
           </table>
         </div>
       </div>
@@ -61,28 +73,23 @@
       <div class="card-body">
         <h2 class="card-title">Village</h2>
         <div class="card-text">
-          <table  class="ml-3">
+          <table class="ml-3">
             <tr>
-              <td><input type="search" name="search" placeholder="Search Village" class="form-control form-control-sm"></td>
-              <td><button class="btn btn-primary btn-sm"><li class="fas fa-search"></li></button></td>
-            </tr>
-            <tr>
-              <td>Nathom Village</td>
-              <td><button class="btn btn-primary btn-sm"><li class="fas fa-plus"></li></button>
-                <button class="btn btn-warning btn-sm"><li class="fas fa-eye"></li></button>
+              <td><input type="search" name="search" placeholder="Search village" class="form-control form-control-sm"></td>
+              <td>
+                <button class="btn btn-primary btn-sm"><li class="fas fa-search"></li></button>
               </td>
             </tr>
-            <tr>
-              <td>Dongdok Village</td>
-              <td><button class="btn btn-primary btn-sm"><li class="fas fa-plus"></li></button>
-                <button class="btn btn-warning btn-sm"><li class="fas fa-eye"></li></button>
+            <tr *ngFor="let v of location.villageviewalls; index as i">
+              <td>{{v.name}}</td>
+              <td> 
+                <button class="btn btn-primary btn-sm" (click)="updateVillage(v.id,v.district_id)"><li class="fas fa-edit"></li></button>
+                <button class="btn btn-danger btn-sm" (click)="deleteVillage(v.id)"><li class="fas fa-trash"></li></button>
               </td>
-            </tr>
+            </tr> 
           </table>
         </div>
       </div>
     </div>
   </div>
-
-
 </div>

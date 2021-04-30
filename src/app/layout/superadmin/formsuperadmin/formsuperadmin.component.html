@@ -1,0 +1,31 @@
+<div  id="modal-update-province">  
+    <div class="modal-header">
+      <h4 class="modal-title">Manage Superadmin</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"> 
+        <label for="province">Username:</label>
+        <input type="text" class="form-control" [(ngModel)]="username"  placeholder="username">  
+      </div>
+      <div class="form-group"> 
+        <label for="province">Password:</label>
+        <input type="password" class="form-control" [(ngModel)]="password"  placeholder="password">  
+      </div>
+      <div class="form-group"> 
+        <label>status:</label> 
+        <select name="status" class="form-control"  [(ngModel)]="status"> 
+            <option>--Choose Status--</option>
+            <option value="active">active</option>
+            <option value="inactive">inactive</option>
+        </select>
+      </div>
+    </div> 
+
+    <div class="modal-footer justify-content-between">
+      <button type="button" class="btn btn-sm btn-default" data-dismiss="modal"  (click)="close()">Close</button>
+      <button type="button" class="btn btn-sm btn-primary" (click)="save()"  data-dismiss="modal">Save</button>
+    </div> 
+</div>

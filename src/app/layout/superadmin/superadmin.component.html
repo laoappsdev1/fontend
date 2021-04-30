@@ -3,7 +3,7 @@
     <h3>Manage SuperAdmin</h3>
   </div>
   <div class="card-body">
-    <button class="btn btn-md btn-success">Create</button>
+    <button class="btn btn-sm btn-success" (click)="createsuperadmin()">Create</button>
     <table class="projects table table-striped">
       <thead>
         <tr>
@@ -16,31 +16,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let admin of superadmin.viewallsuperadmin; index as i">
           <td>#</td>
-          <td><a> AdminLTE v3 </a><br /><small> Created 01.01.2019 </small></td>
+          <td><a>{{admin.username}}</a></td>
+          <td> <p>{{admin.created_date}}</p> </td>
+          <td> <p>{{admin.updated_date}}</p> </td>
           <td>
-            <p>2021/02/15</p>
-          </td>
-          <td>
-            <p>2021/02/15</p>
-          </td>
-          <td class="project-state">
-            <div class="badge badge-success">active</div>
+            <div class="badge badge-success" *ngIf="admin.status=='active' else inactive">active</div>
+            <ng-template #inactive ><div class="badge badge-danger">active</div></ng-template>
           </td>
           <td class="project-actions text-right">
-            <a href="#" class="btn btn-warning btn-sm"
-              ><i class="fa-undo fas"></i> Reset</a
-            >
-            <a href="#" class="btn btn-primary btn-sm">
-              <i class="fa-eye fas"></i> View
-            </a>
-            <a href="#" class="btn btn-info btn-sm"
-              ><i class="fa-pencil-alt fas"></i> Edit
-            </a>
-            <a href="#" class="btn btn-danger btn-sm"
-              ><i class="fa-trash fas"></i> Delete
-            </a>
+            <button class="btn btn-warning btn-sm"><i class="fa-undo fas"></i></button> 
+            <button class="btn btn-primary btn-sm" (click)="updatesuperadmin(admin.id)"><i class="fa-pencil-alt fas"></i></button>
+            <button class="btn btn-danger btn-sm" (click)="deletesuperadmin(admin.id)"><i class="fa-trash fas"></i></button>
           </td>
         </tr>
       </tbody>

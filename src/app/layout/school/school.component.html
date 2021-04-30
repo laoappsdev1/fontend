@@ -3,52 +3,47 @@
     <h3>Manage School</h3>
   </div>
   <div class="card-body">
-    <button class="btn btn-md btn-success">Create</button>
+    <button class="btn btn-md btn-success" (click)="createschool()">Create</button>
     <table class="projects table table-striped">
       <thead>
         <tr>
           <th style="width: 5%">#</th>
-          <th style="width: 20%">Username</th>
+          <th style="width: 20%">School Name</th>
           <th style="width: 10%">Logo</th>
-          <th style="width: 10%">Uuid</th>
-          <th style="width: 10%">Update Date</th>
-          <th style="width: 10%">Create Date</th>
+          <th style="width: 10%">Username</th>
+          <th style="width: 10%">Gmail</th>
+          <th style="width: 10%">Tel</th>
           <th class="text-center" style="width: 8%">Status</th>
           <th style="width: 25%"></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let school of schoolservice.viewallschool; index as i">
           <td>1</td>
-          <td><a> AdminLTE v3 </a><br /><small> Created 01.01.2019 </small></td>
+          <td><a>{{school.name}} </a><br /><small> Created: {{school.created_date}}</small></td>
           <td>
             <p><img src="./assets/admin-lte/dist/img/AdminLTELogo.png" alt="table-avatar" class="table-avatar"></p>
           </td>
           <td>
-            <p>2016</p>
+            <p>{{school.username}}</p>
           </td>
           <td>
-            <p>2021/02/15</p>
+            <p>{{school.email}}</p>
           </td>
           <td>
-            <p>2021/02/15</p>
+            <p>{{school.tel}}</p>
           </td>
           <td class="project-state">
-            <div class="badge badge-success">active</div>
+            <div class="badge badge-success" *ngIf="school.status=='active' else checkstatus">{{school.status}}</div>
+            <ng-template #checkstatus>
+              <div class="badge badge-danger">{{school.status}}</div>
+            </ng-template>
           </td>
           <td class="project-actions text-right">
-            <a href="#" class="btn btn-warning btn-sm"
-              ><i class="fa-undo fas"></i> Reset</a
-            >
-            <a href="#" class="btn btn-primary btn-sm">
-              <i class="fa-eye fas"></i> View
-            </a>
-            <a href="#" class="btn btn-info btn-sm"
-              ><i class="fa-pencil-alt fas"></i> Edit
-            </a>
-            <a href="#" class="btn btn-danger btn-sm"
-              ><i class="fa-trash fas"></i> Delete
-            </a>
+            <button class="btn btn-warning btn-sm" (click)="resetpassword(school.id)"><i class="fa-undo fas"></i></button>
+            <button class="btn btn-info btn-sm" (click)="viewschool(school.id)"><i class="fa-eye fas"></i></button>
+            <button class="btn btn-primary btn-sm" (click)="updateschool(school.id)"><i class="fa-pencil-alt fas"></i></button>
+            <button class="btn btn-danger btn-sm" (click)="deleteschool(school.id)"><i class="fa-trash fas"></i></button>
           </td>
         </tr>
       </tbody>

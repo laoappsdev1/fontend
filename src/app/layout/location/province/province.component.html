@@ -1,1 +1,18 @@
-<p>province works!</p>
+<div  id="modal-update-province">  
+        <div class="modal-header">
+          <h4 class="modal-title">Add Province</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group"> 
+            <label for="province">Province:</label>
+            <input type="text" class="form-control" [(ngModel)]="province"  placeholder="Province">  
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-sm btn-default" data-dismiss="modal"  (click)="close()">Close</button>
+          <button type="button" class="btn btn-sm btn-primary" (click)="save()"  data-dismiss="modal">Save</button>
+        </div> 
+  </div>

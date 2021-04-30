@@ -6,6 +6,18 @@ export const environment = {
   production: false
 };
 
+export const system = {
+  app_name: 'Highschool',
+  WS_ENDPOINT: 'ws://172.23.47.10:9504'
+};
+
+export const local = {
+  token: 'token',
+  user: 'user',
+  userid: 'userid'
+};
+
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

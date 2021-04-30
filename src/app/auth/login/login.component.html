@@ -11,15 +11,15 @@
 
 
           <div class="input-group mb-3">
-            <input type="number" class="form-control" placeholder="Number Phone">
+            <input type="text" class="form-control" placeholder="Username" [(ngModel)]="usernames" required>
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-phone"></span>
+                <span class="fas fa-user"></span>
               </div>
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password">
+            <input type="password" class="form-control" placeholder="Password" [(ngModel)]="passwords" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>

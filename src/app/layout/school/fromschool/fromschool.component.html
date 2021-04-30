@@ -1,0 +1,86 @@
+<div id="modal-update-province">
+  <div class="modal-header">
+    <h4 class="modal-title">Manage School</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+
+      <div class="col-sm-12">
+        <div class="form-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" (change)="fileChangeEvent($event)">
+              <label class="custom-file-label" for="exampleInputFile">Choose File Logo</label>
+            </div>
+          </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+            <label for="province">School Name:</label>
+            <input type="text" class="form-control" [(ngModel)]="name" placeholder="name">
+          </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+            <label for="province">Username:</label>
+            <input type="text" class="form-control" [(ngModel)]="username" placeholder="username">
+          </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+            <label for="province">Password:</label>
+            <input type="password" class="form-control" [(ngModel)]="password" placeholder="password">
+          </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+            <label>status:</label>
+            <select name="status" class="form-control" [(ngModel)]="status">
+              <option>--Choose Status--</option>
+              <option value="active">active</option>
+              <option value="inactive">inactive</option>
+            </select>
+          </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" [(ngModel)]="email" placeholder="Email">
+          </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+            <label for="tel">Tel:</label>
+            <input type="text" class="form-control" [(ngModel)]="tel" placeholder="tel">
+          </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+            <label for="province">Address:</label>
+            <textarea type="text" class="form-control" [(ngModel)]="address" placeholder="Address"></textarea>
+          </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+            <label for="province">Description:</label>
+            <textarea type="text" class="form-control" [(ngModel)]="description" placeholder="Description"></textarea>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer justify-content-between">
+    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal" (click)="close()">Close</button>
+    <button type="button" class="btn btn-sm btn-primary" (click)="save()" data-dismiss="modal">Save</button>
+  </div>
+</div>
