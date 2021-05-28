@@ -7,7 +7,7 @@ export class Res{
 export class Req{
   path:EPath;
   header:IHeader;
-  // Data:Array<any>=[];
+  userid:number;
   data:any;
 }
 
@@ -16,6 +16,7 @@ export interface IHeader{
   m:EMethod;
   token:string;
   uuid:string;
+  userid:number;
 }
 
 export enum EPath{
@@ -33,6 +34,7 @@ export enum EPath{
   teachertimetable='teachertimetable',
   student='student',
   object='object',
+  subject='subject',
   classroom='classroom',
   level='level',
   studentlevel='studentlevel',

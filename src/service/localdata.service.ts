@@ -15,12 +15,19 @@ export class LocaldataService {
     localStorage.setItem(local.user,user);
   }
 
+  save_uuid(uuid:string){
+    localStorage.setItem(local.user,uuid);
+  }
+
   save_userid(userid:string){
     localStorage.setItem(local.userid,userid);
   }
 
   get_token(){
     return localStorage.getItem(local.token);
+  }
+  get_uuid(){
+    return localStorage.getItem(local.uuid);
   }
 
   get_user(){ 
@@ -33,6 +40,9 @@ export class LocaldataService {
 
   unset_token(){ 
     return  localStorage.removeItem(local.token) ;
+  }
+  unset_uuid(){ 
+    return  localStorage.removeItem(local.uuid) ;
   }
   
   unset_user(){ 

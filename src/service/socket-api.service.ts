@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { system } from "src/environments/environment";
 import { NgxSpinnerService } from "ngx-spinner";
 @Injectable({
@@ -8,6 +8,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 
 export class SocketAPIService {
   public wssocket: WebSocket;
+  socketAPIService: any;
   constructor(public spinner:NgxSpinnerService) {
     this.connect()
    }
@@ -23,8 +24,13 @@ export class SocketAPIService {
     this.wssocket.onerror = (error) => {
       console.log(`[error] ${error}`);
     }; 
+    
+    this.wssocket.onmessage = (event)=>{
+      this.getEventmesage.next(event);
+    }
   }
-
+  public getEventmesage=new Subject<any>();
+  
   waitForConnection(callback: Function, interval: number) {
     if (this.wssocket.readyState === 1) {
       callback();

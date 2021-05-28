@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+              <label for="">Class Number</label>
+              <input type="text" [(ngModel)]="class_number" placeholder="Class Number" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="">Level</label>
+              <select [(ngModel)]="level_id" class="form-control">
+                  <option value="">--Choose Level--</option>
+                  <option *ngFor="let level of viewallLevel"  value={{level.id}}>{{level.level}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group" style="text-align: right;">
+                <button class="btn btn-primary btn-sm" (click)="saveCreate()">Save</button>
+              </div>
+          </div>
+      </div>
+      
+      
+    </div>
+  </div>

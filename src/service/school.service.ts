@@ -117,9 +117,7 @@ export class SchoolService {
         m: EMethod.create,
         token: this.localdata.get_token()
       }
-    } as Req; 
-    console.log(Data);
-    
+    } as Req;  
     this.socketAPIService.sendData(Data);
   }
   save_school_success(data: any) {

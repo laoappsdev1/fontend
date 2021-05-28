@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { SocketAPIService } from "./socket-api.service";
 import { LocaldataService } from "./localdata.service";
-import { Req, EPath, IHeader, EMethod, ISchools, IProvince,IDistrict, IVillage } from 'src/app/model/model';
+import { Req, EPath, IHeader, EMethod, ISchools, IProvince, IDistrict, IVillage } from 'src/app/model/model';
 import Swal from 'sweetalert2';
 import { JsonPipe } from '@angular/common';
 import { Subject } from 'rxjs';
@@ -22,18 +22,18 @@ export class LocaionService {
   public viewsDistrict: any;
 
   constructor(
-    public spinner: NgxSpinnerService, 
-    public router: Router, 
-    private socketAPIService: SocketAPIService, 
+    public spinner: NgxSpinnerService,
+    public router: Router,
+    private socketAPIService: SocketAPIService,
     private localdata: LocaldataService,
-    ) {
+  ) {
     this.income()
   }
 
   income() {
-    this.socketAPIService.wssocket.onmessage = (event) => {
+    this.socketAPIService.getEventmesage.asObservable().subscribe(event => {
       try {
-        const checkdata = JSON.parse(event.data); 
+        const checkdata = JSON.parse(event.data);
 
         if (checkdata.status == 0) {
           Swal.fire({
@@ -85,7 +85,7 @@ export class LocaionService {
               this.view_district_success(checkdata.data);
               break;
 
-            case 'create': 
+            case 'create':
               this.district_success(checkdata.data);
               // this.updatedistrictSource();
               break;
@@ -103,7 +103,7 @@ export class LocaionService {
             default:
               break;
           }
-        }else if (checkdata.path == 'village') {
+        } else if (checkdata.path == 'village') {
 
           switch (checkdata.methods) {
             case 'viewbydistrictid':
@@ -114,7 +114,7 @@ export class LocaionService {
               this.view_district_success(checkdata.data);
               break;
 
-            case 'create': 
+            case 'create':
               this.district_success(checkdata.data);
               // this.updatedistrictSource();
               break;
@@ -137,8 +137,8 @@ export class LocaionService {
       } catch (error) {
         console.error(error);
       }
-
     }
+    )
   }
 
 
@@ -146,7 +146,7 @@ export class LocaionService {
   public updateProvinceSource() {
     this.provinceUpdaterSource.next(1);
   }
-  
+
   public districtUpdaterSource = new Subject<any>();
   public updatedistrictSource() {
     this.districtUpdaterSource.next(1);
@@ -163,7 +163,7 @@ export class LocaionService {
         m: EMethod.viewall,
         token: this.localdata.get_token()
       }
-    } as Req; 
+    } as Req;
     this.socketAPIService.sendData(Data);
   }
 
@@ -176,7 +176,7 @@ export class LocaionService {
         m: EMethod.view,
         token: this.localdata.get_token()
       }
-    } as Req; 
+    } as Req;
     this.socketAPIService.sendData(Data);
   }
 
@@ -188,7 +188,7 @@ export class LocaionService {
         m: EMethod.create,
         token: this.localdata.get_token()
       }
-    } as Req; 
+    } as Req;
     this.socketAPIService.sendData(Data);
   }
 
@@ -215,7 +215,7 @@ export class LocaionService {
     } as Req;
     this.socketAPIService.sendData(Data);
   }
-  
+
 
   viewall_province_success(data: any) {
     this.provinceviewalls = data;
@@ -238,8 +238,8 @@ export class LocaionService {
     this.views = data;
     this.districtViewSource.next(data);
   }
-  
-  
+
+
   public villageViewSource = new Subject<any>();
   view_village_success(data: any) {
     this.views = data;
@@ -274,7 +274,7 @@ export class LocaionService {
         m: EMethod.create,
         token: this.localdata.get_token()
       }
-    } as Req;  
+    } as Req;
     this.socketAPIService.sendData(Data);
   }
 
@@ -286,7 +286,7 @@ export class LocaionService {
         m: EMethod.update,
         token: this.localdata.get_token()
       }
-    } as Req; 
+    } as Req;
     this.socketAPIService.sendData(Data);
   }
 
@@ -310,37 +310,37 @@ export class LocaionService {
         m: EMethod.view,
         token: this.localdata.get_token()
       }
-    } as Req;  
+    } as Req;
     this.socketAPIService.sendData(Data);
   }
 
-  viewall_Deistrict(parame:IDistrict) {
+  viewall_Deistrict(parame: IDistrict) {
     const Data: Req = {
       path: EPath.district,
-      data:parame,
+      data: parame,
       header: {
         m: EMethod.viewallbypid,
         token: this.localdata.get_token()
       }
-    } as Req; 
+    } as Req;
     this.socketAPIService.sendData(Data);
   }
 
-  
+
   viewallbypid_district_success(data: any) {
     this.districtviewalls = data;
   }
-  
 
-  viewall_Village(parame:IVillage) {
+
+  viewall_Village(parame: IVillage) {
     const Data: Req = {
       path: EPath.village,
-      data:parame,
+      data: parame,
       header: {
         m: EMethod.viewbydistrictid,
         token: this.localdata.get_token()
       }
-    } as Req; 
+    } as Req;
     this.socketAPIService.sendData(Data);
   }
 
@@ -364,7 +364,7 @@ export class LocaionService {
         m: EMethod.view,
         token: this.localdata.get_token()
       }
-    } as Req;  
+    } as Req;
     this.socketAPIService.sendData(Data);
   }
 
@@ -376,7 +376,7 @@ export class LocaionService {
         m: EMethod.create,
         token: this.localdata.get_token()
       }
-    } as Req;  
+    } as Req;
     this.socketAPIService.sendData(Data);
   }
 
@@ -388,7 +388,7 @@ export class LocaionService {
         m: EMethod.update,
         token: this.localdata.get_token()
       }
-    } as Req; 
+    } as Req;
     this.socketAPIService.sendData(Data);
   }
 

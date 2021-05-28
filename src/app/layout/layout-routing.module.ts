@@ -11,6 +11,9 @@ const routes: Routes = [
     { path: 'school', loadChildren: () => import('./school/school.module').then(m => m.SchoolModule) }
   ]
 },
+  { path: 'employee', loadChildren: () => import('./employee/employee.module').then(m => m.EmployeeModule) },
+  { path: 'classroom', loadChildren: () => import('./classroom/classroom.module').then(m => m.ClassroomModule) },
+  { path: 'level', loadChildren: () => import('./level/level.module').then(m => m.LevelModule) },
 
 ];
 

@@ -8,12 +8,13 @@ export const environment = {
 
 export const system = {
   app_name: 'Highschool',
-  WS_ENDPOINT: 'ws://172.23.47.10:9504'
+  WS_ENDPOINT: 'ws://172.19.213.39:9502'
 };
 
 export const local = {
   token: 'token',
   user: 'user',
+  uuid: 'uuid',
   userid: 'userid'
 };
 
